@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const cities = require('./cities');
+const { places, descriptors } = require('./seedHelpers');
 const Campground = require('../models/campground');
-const cities = require("./cities")
-const { places, descriptors } = require('./seedhelpers')
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useNewUrlParser: true,
@@ -9,14 +9,14 @@ mongoose.connect('mongodb://localhost:27017/yelp-camp', {
     useUnifiedTopology: true
 });
 
-
 const db = mongoose.connection;
+
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
-    console.log(" Database Connected!!!");
+    console.log("Database connected");
 });
 
-const sample = array => array[Math.floor(Math.random() * array.length)]
+const sample = array => array[Math.floor(Math.random() * array.length)];
 
 
 const seedDB = async () => {
@@ -27,10 +27,9 @@ const seedDB = async () => {
         const camp = new Campground({
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://images.unsplash.com/photo-1458934876533-9becb2380c47',
-            description: 'Camping, forest, campfire, food over fire, coffee, mist, woods, sunsets, lakes, leaves and trees',
+            image: 'https://source.unsplash.com/collection/483251',
+            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
             price
-
         })
         await camp.save();
     }

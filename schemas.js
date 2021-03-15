@@ -1,6 +1,5 @@
-const { number } = require('joi')
-const Joi = require('joi')
-
+const Joi = require('joi');
+const { number } = require('joi');
 
 module.exports.campgroundSchema = Joi.object({
     campground: Joi.object({
@@ -10,7 +9,7 @@ module.exports.campgroundSchema = Joi.object({
         location: Joi.string().required(),
         description: Joi.string().required()
     }).required()
-})
+});
 
 module.exports.reviewSchema = Joi.object({
     review: Joi.object({
@@ -18,3 +17,4 @@ module.exports.reviewSchema = Joi.object({
         body: Joi.string().required()
     }).required()
 })
+
