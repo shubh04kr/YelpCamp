@@ -58,8 +58,10 @@ passport.use(new LocalStrategy(User.authenticate()))// Use local strategy to aut
 passport.serializeUser(User.serializeUser());   // how to store user in session
 passport.deserializeUser(User.deserializeUser()); // how to de-store user in session
 
-
+// middleware stuff for some global variables
 app.use((req, res, next) => {
+    console.log(req.session)
+    res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
